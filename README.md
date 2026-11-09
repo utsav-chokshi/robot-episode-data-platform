@@ -4,8 +4,6 @@
 
 Robot experiments generate images, events, actions and outcomes. This project preserves their original bytes, validates their relationships, projects queryable metadata and publishes versioned analytical datasets. A read-only dashboard connects each score to its source evidence—including failed tasks and invalid model responses.
 
-Built by Utsav Chokshi as a standalone portfolio project for robotics data-engineering roles.
-
 Source repository: [utsav-chokshi/robot-episode-data-platform](https://github.com/utsav-chokshi/robot-episode-data-platform). The local Python package, Compose project and volume identifiers retain their existing names so the measured workflow continues to use its original data.
 
 ![Fixed benchmark in the evidence dashboard](docs/media/benchmark-dashboard.png)
