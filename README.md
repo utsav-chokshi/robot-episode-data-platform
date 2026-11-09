@@ -98,7 +98,7 @@ docker compose --profile test run --build --rm pipeline-tests
 docker compose --profile dashboard run --build --no-deps --rm dashboard /opt/dashboard/bin/python -m pytest -q -p no:cacheprovider tests/test_dashboard.py
 ```
 
-Core/analytics tests use an isolated PostgreSQL test service. Dashboard checks run in their own dependency environment. The local 110-test result covers specific failures and recovery boundaries; a configured GitHub Actions workflow is included, but no remote CI run has been observed.
+Core/analytics tests use an isolated PostgreSQL test service. Dashboard checks run in their own dependency environment. The local 110-test result covers specific failures and recovery boundaries; the [GitHub Actions workflow](https://github.com/utsav-chokshi/robot-episode-data-platform/actions) also passed its core/data-platform, simulator and dashboard jobs on the initial published commit.
 
 After building the component images and preparing the optional model cache, [Validate-CleanWorkspace.ps1](scripts/Validate-CleanWorkspace.ps1) runs the full smoke workflow with fresh application volumes in a separate Compose namespace. It reuses built images and read-only prepared weights; it does not test a cold internet download, a fresh OS or host power loss.
 
