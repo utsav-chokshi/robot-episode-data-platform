@@ -1,0 +1,59 @@
+{
+  "$defs": {
+    "Binding": {
+      "additionalProperties": false,
+      "properties": {
+        "attempt_id": {
+          "title": "Attempt Id",
+          "type": "string"
+        },
+        "case_id": {
+          "title": "Case Id",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "BASELINE_STRUCTURED",
+            "VLM_EVALUATION"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "seed": {
+          "title": "Seed",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "case_id",
+        "seed",
+        "mode",
+        "attempt_id"
+      ],
+      "title": "Binding",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "assignment_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Assignment Version",
+      "type": "string"
+    },
+    "bindings": {
+      "items": {
+        "$ref": "#/$defs/Binding"
+      },
+      "maxItems": 2000,
+      "title": "Bindings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "bindings"
+  ],
+  "title": "Assignments",
+  "type": "object"
+}

@@ -1,0 +1,196 @@
+{
+  "$defs": {
+    "Case": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_failure_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Baseline Failure Code"
+        },
+        "baseline_outcome": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Baseline Outcome"
+        },
+        "baseline_request": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Baseline Request"
+        },
+        "case_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Case Id",
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "supported",
+            "ambiguous",
+            "invalid",
+            "fault",
+            "rejection"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "expected": {
+          "$ref": "#/$defs/Target"
+        },
+        "instruction": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Instruction",
+          "type": "string"
+        },
+        "seeds": {
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 10,
+          "minItems": 1,
+          "title": "Seeds",
+          "type": "array"
+        },
+        "vlm_applicable": {
+          "default": true,
+          "title": "Vlm Applicable",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "case_id",
+        "category",
+        "instruction",
+        "expected",
+        "baseline_request",
+        "seeds"
+      ],
+      "title": "Case",
+      "type": "object"
+    },
+    "Target": {
+      "additionalProperties": false,
+      "properties": {
+        "destination_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Destination Id"
+        },
+        "object_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Object Id"
+        },
+        "reason_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason Code"
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "reject",
+            "clarify"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "Target",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "cases": {
+      "items": {
+        "$ref": "#/$defs/Case"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Cases",
+      "type": "array"
+    },
+    "disclosure": {
+      "maxLength": 2048,
+      "minLength": 1,
+      "title": "Disclosure",
+      "type": "string"
+    },
+    "name": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "split": {
+      "enum": [
+        "development_retrospective",
+        "planned_evaluation"
+      ],
+      "title": "Split",
+      "type": "string"
+    },
+    "task_set_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Task Set Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "split",
+    "disclosure",
+    "cases"
+  ],
+  "title": "TaskSet",
+  "type": "object"
+}

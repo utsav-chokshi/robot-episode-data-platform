@@ -1,0 +1,12 @@
+{
+  "version": "baseline-public-appearance-v1",
+  "objects": [
+    {"id": "package_01", "description": "red package in the baseline scene configuration"},
+    {"id": "package_02", "description": "green package in the baseline scene configuration"},
+    {"id": "package_03", "description": "blue package in the baseline scene configuration"}
+  ],
+  "destinations": [
+    {"id": "zone_a", "description": "destination zone A"},
+    {"id": "zone_b", "description": "destination zone B"}
+  ]
+}

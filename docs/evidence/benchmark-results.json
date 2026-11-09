@@ -1,0 +1,291 @@
+{
+  "measured_date": "2026-11-09",
+  "dataset_id": "c4715fa5-51e9-427a-8d2b-aed006dc5066",
+  "build_fingerprint": "5ffa2059467323c8782f444cb55bc06e8b1c828c304368340e91245cb2db0dc6",
+  "input_sha256": "0e43a85cd4b7252c6509edd41c78b5ce888683ccacc1aa7677b7e0cbdbf29a3e",
+  "report_id": "9daeb072-32b4-5c22-9f5c-f3cb93e35375",
+  "task_set_sha256": "4e83bc1aac993c668daddc21196b16bf0210a45010185fca6f05b90c33116643",
+  "metrics": {
+    "BASELINE_STRUCTURED": {
+      "applicable_slots": 54,
+      "clarify_match": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "complete_evidence": {
+        "denominator": 54,
+        "numerator": 54,
+        "rate": 1
+      },
+      "coverage": {
+        "denominator": 54,
+        "numerator": 54,
+        "rate": 1
+      },
+      "expectation_match": {
+        "denominator": 54,
+        "numerator": 54,
+        "rate": 1
+      },
+      "failure_counts": {},
+      "not_applicable": 36,
+      "physical_success": {
+        "denominator": 54,
+        "numerator": 54,
+        "rate": 1
+      },
+      "ready_match": {
+        "denominator": 54,
+        "numerator": 54,
+        "rate": 1
+      },
+      "reject_match": {
+        "denominator": 0,
+        "numerator": 0,
+        "rate": null
+      },
+      "schema_valid": {
+        "status": "NOT_APPLICABLE"
+      },
+      "wall_latency_ms": {
+        "max": null,
+        "mean": null,
+        "min": null,
+        "sample_count": 0
+      }
+    },
+    "VLM_EVALUATION": {
+      "applicable_slots": 90,
+      "clarify_match": {
+        "denominator": 18,
+        "numerator": 0,
+        "rate": 0
+      },
+      "complete_evidence": {
+        "denominator": 90,
+        "numerator": 90,
+        "rate": 1
+      },
+      "coverage": {
+        "denominator": 90,
+        "numerator": 90,
+        "rate": 1
+      },
+      "expectation_match": {
+        "denominator": 90,
+        "numerator": 0,
+        "rate": 0
+      },
+      "failure_counts": {
+        "PLAN_SCHEMA_INVALID": 90
+      },
+      "not_applicable": 0,
+      "physical_success": {
+        "status": "NOT_APPLICABLE"
+      },
+      "ready_match": {
+        "denominator": 54,
+        "numerator": 0,
+        "rate": 0
+      },
+      "reject_match": {
+        "denominator": 18,
+        "numerator": 0,
+        "rate": 0
+      },
+      "schema_valid": {
+        "denominator": 90,
+        "numerator": 0,
+        "rate": 0
+      },
+      "wall_latency_ms": {
+        "max": 27103.83012999955,
+        "mean": 18619.19931022207,
+        "min": 15817.946675000712,
+        "sample_count": 90
+      }
+    }
+  },
+  "measurements": {
+    "baseline_attempts": 54,
+    "baseline_outcomes": {
+      "SUCCEEDED": 54
+    },
+    "baseline_wall_ms": {
+      "max": 8241.091478997987,
+      "p50": 2645.917363999615,
+      "p95": 3055.5622419997235,
+      "sample_count": 54
+    },
+    "limits": "Process RSS is not total container memory. Phase timings are completed-inference only; all-attempt wall includes failures/timeouts. Repetition seeds do not imply independent scenes.",
+    "model_attempts": 90,
+    "model_wall_ms_all_attempts": {
+      "max": 27103.83012999955,
+      "p50": 17491.96273099733,
+      "p95": 24876.211327999044,
+      "sample_count": 90
+    },
+    "model_wall_ms_completed": {
+      "max": 27103.83012999955,
+      "p50": 17491.96273099733,
+      "p95": 24876.211327999044,
+      "sample_count": 90
+    },
+    "percentile_method": "nearest-rank",
+    "phase_ms_completed": {
+      "generation": {
+        "max": 15666.503440999804,
+        "p50": 6106.252729001426,
+        "p95": 12020.351651997771,
+        "sample_count": 90
+      },
+      "load": {
+        "max": 5332.935202000954,
+        "p50": 1720.1069259972428,
+        "p95": 2219.8030879990256,
+        "sample_count": 90
+      },
+      "preprocess": {
+        "max": 221.8518990011944,
+        "p50": 72.30985199930728,
+        "p95": 110.05639900031383,
+        "sample_count": 90
+      }
+    },
+    "process_peak_rss_mib": {
+      "max": 1836.46484375,
+      "p50": 1823.546875,
+      "p95": 1833.01171875,
+      "sample_count": 90
+    },
+    "provider_statuses": {
+      "COMPLETED": 90
+    },
+    "schema_invalid_completed": 90,
+    "schema_valid_completed": 0
+  },
+  "resources": {
+    "sample_count": 246,
+    "first_sample_utc": "2026-11-09T19:25:10.7481986Z",
+    "last_sample_utc": "2026-11-09T19:52:22.3662004Z",
+    "largest_sampled_container_memory_mib": 1478.656,
+    "largest_sampled_cpu_percent": 212.79,
+    "source_image_associations": 3,
+    "distinct_source_image_sha256": [
+      "0264b31b70ca717b0d9d13901dad1f0aa72f93357b6d98c96f41d9d27a921e9e",
+      "b7f4c951c36c66208d7c6b14dcc1879d184e15fe18b7d11a2cf78c6de7587c57",
+      "f8e468708d04c3f504b9a3d6f4c2538206b81232099872fac04972e8ead94857"
+    ],
+    "model_attempts": 90,
+    "aggregate_sequential_slot_wall_seconds": 1684.1322251469755,
+    "scope": "Samples are periodic Docker statistics, not exhaustive container peaks. Worker RSS is recorded separately. CPU percent may exceed 100 for multiple cores. Distinct seeds are repetition groups, not independent visual scenes."
+  },
+  "verification": {
+    "core_analytics_tests": 103,
+    "dashboard_tests": 7,
+    "remote_ci_observed": false,
+    "replay": {
+      "publication_reused": true,
+      "dataset_id": "c4715fa5-51e9-427a-8d2b-aed006dc5066",
+      "report_id": "9daeb072-32b4-5c22-9f5c-f3cb93e35375",
+      "baseline_replay": {
+        "DUPLICATE": 71
+      },
+      "proposal_replay": {
+        "DUPLICATE": 93
+      },
+      "counts_unchanged": {
+        "episodes": 71,
+        "raw_events": 1158,
+        "artifacts": 1088,
+        "observations": 339,
+        "actions": 135,
+        "outcomes": 71,
+        "ingestion_receipts": 71,
+        "ingestion_findings": 0,
+        "plan_attempts": 93,
+        "proposal_artifacts": 926,
+        "validation_results": 92,
+        "proposal_receipts": 93,
+        "proposal_findings": 0
+      },
+      "historical_rebuilds": [
+        {
+          "dataset_id": "e52da6c6-d226-45e5-8cbb-557e9391e75a",
+          "build_fingerprint": "53ddeabbd32d80e6321c70dc0aa9f187b978c0bb794b085508b3401c04d1b285",
+          "logical_tables_match": {
+            "episodes": true,
+            "events": true,
+            "artifacts": true,
+            "observations": true,
+            "actions": true,
+            "findings": true,
+            "evaluation_cases": true
+          },
+          "metrics_match": true
+        },
+        {
+          "dataset_id": "ca387007-9acf-4c80-8127-37cf55b65223",
+          "build_fingerprint": "47ebca9330a17d966c29f46702c21c60aaa3d2f52890a8d2ecd681d9da09bdef",
+          "logical_tables_match": {
+            "episodes": true,
+            "events": true,
+            "artifacts": true,
+            "observations": true,
+            "actions": true,
+            "findings": true,
+            "evaluation_cases": true,
+            "proposals": true,
+            "proposal_artifacts": true,
+            "proposal_validations": true,
+            "proposal_receipts": true,
+            "proposal_findings": true
+          },
+          "metrics_match": true
+        }
+      ],
+      "benchmark_rebuild": {
+        "build_fingerprint": "5ffa2059467323c8782f444cb55bc06e8b1c828c304368340e91245cb2db0dc6",
+        "dataset_id": "c4715fa5-51e9-427a-8d2b-aed006dc5066",
+        "logical_tables_match": {
+          "actions": true,
+          "artifacts": true,
+          "episodes": true,
+          "evaluation_cases": true,
+          "events": true,
+          "findings": true,
+          "observations": true,
+          "proposal_artifacts": true,
+          "proposal_findings": true,
+          "proposal_receipts": true,
+          "proposal_validations": true,
+          "proposals": true
+        },
+        "metrics_match": true
+      }
+    },
+    "historical_files": {
+      "original_files_unchanged": {
+        "capture": 516,
+        "datasets": 42,
+        "proposals": 41,
+        "raw": 465
+      },
+      "file_counts_after": {
+        "capture": 2460,
+        "datasets": 110,
+        "proposals": 1751,
+        "raw": 2485
+      }
+    },
+    "clean_workspace": "Fresh application volumes, real Prefect flow, offline model, dataset rebuild, evaluation, dashboard health and duplicate replay passed. Built images and read-only prepared model weights reused."
+  },
+  "limits": [
+    "Simulated bounded scene; no physical robot",
+    "Repetition seeds do not establish independent scene variation",
+    "Public appearance/handle vocabulary supplied to model",
+    "Model proposals never execute actions",
+    "Other host platforms, cold internet download and host power loss unverified"
+  ]
+}

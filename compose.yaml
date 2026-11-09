@@ -1,0 +1,298 @@
+name: robotics-data-platform
+
+x-app: &app
+  image: robotics-data-platform:local
+  build:
+    context: .
+    target: app
+  environment: &app-env
+    RDP_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-rdp_local}:${POSTGRES_PASSWORD:?Initialize local .env first}@postgres:5432/${POSTGRES_DB:-robotics_data}
+  mem_limit: 512m
+
+services:
+  postgres:
+    image: postgres:17-bookworm@sha256:665dc7b37ac52a17e298511414c21d23ffa4e6a6ef6225b3e5d59c7afb35e994
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-rdp_local}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Initialize local .env first}
+      POSTGRES_DB: ${POSTGRES_DB:-robotics_data}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    mem_limit: 1g
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+
+  migrate:
+    <<: *app
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api:
+    <<: *app
+    volumes:
+      - raw_data:/raw:ro
+      - analytical_data:/datasets:ro
+      - evaluation_data:/evaluations:ro
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    ports:
+      - "127.0.0.1:${API_PORT:-8010}:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/readyz', timeout=4)"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 5s
+
+  test-postgres:
+    image: postgres:17-bookworm@sha256:665dc7b37ac52a17e298511414c21d23ffa4e6a6ef6225b3e5d59c7afb35e994
+    profiles: [test]
+    environment:
+      POSTGRES_USER: rdp_test_admin
+      POSTGRES_PASSWORD: isolated-local-test-only
+      POSTGRES_DB: postgres
+    tmpfs:
+      - /var/lib/postgresql/data
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "rdp_test_admin", "-d", "postgres"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+  tests:
+    image: robotics-data-platform:local
+    build:
+      context: .
+      target: app
+    profiles: [test]
+    environment:
+      RDP_TEST_DATABASE_URL: postgresql+psycopg://rdp_test_admin:isolated-local-test-only@test-postgres:5432/postgres
+    command: ["pytest", "-q", "-p", "no:cacheprovider"]
+    depends_on:
+      test-postgres:
+        condition: service_healthy
+    mem_limit: 1g
+
+  simulator:
+    image: robotics-data-platform-simulator:local
+    build:
+      context: .
+      target: simulator
+    profiles: [simulation]
+    network_mode: none
+    cpus: 2
+    mem_limit: 3g
+    volumes:
+      - capture_spool:/capture
+
+  ingestor:
+    <<: *app
+    profiles: [ingestion]
+    command: ["python", "-m", "robotics_data_platform.ingestion.cli", "ingest"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    volumes:
+      - capture_spool:/capture:ro
+      - raw_data:/raw
+    mem_limit: 512m
+
+  prefect:
+    image: robotics-data-platform-pipelines:local
+    build:
+      context: .
+      target: pipelines
+    profiles: [pipelines]
+    command: [/opt/prefect/bin/prefect, server, start, --host, 0.0.0.0]
+    environment:
+      PREFECT_HOME: /prefect
+      PREFECT_SERVER_ANALYTICS_ENABLED: "false"
+      PREFECT_UI_API_URL: http://127.0.0.1:4201/api
+      PREFECT_SERVER_UI_STATIC_DIRECTORY: /prefect/ui
+    volumes:
+      - prefect_data:/prefect
+    ports:
+      - "127.0.0.1:4201:4200"
+    mem_limit: 1g
+    healthcheck:
+      test: [CMD, /opt/prefect/bin/python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:4200/api/health', timeout=4); response=urllib.request.urlopen('http://127.0.0.1:4200/', timeout=4); assert 'text/html' in response.headers.get('Content-Type', '')"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 15s
+
+  pipeline:
+    image: robotics-data-platform-pipelines:local
+    build:
+      context: .
+      target: pipelines
+    profiles: [pipelines]
+    environment:
+      <<: *app-env
+      PREFECT_API_URL: http://prefect:4200/api
+      PREFECT_SERVER_ANALYTICS_ENABLED: "false"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      prefect:
+        condition: service_healthy
+    volumes:
+      - capture_spool:/capture:ro
+      - raw_data:/raw:ro
+      - analytical_data:/datasets
+    cpus: 2
+    mem_limit: 2g
+
+  pipeline-tests:
+    image: robotics-data-platform-analytics:local
+    build:
+      context: .
+      target: analytics
+    profiles: [test]
+    environment:
+      RDP_TEST_DATABASE_URL: postgresql+psycopg://rdp_test_admin:isolated-local-test-only@test-postgres:5432/postgres
+    command: [pytest, -q, -p, "no:cacheprovider"]
+    depends_on:
+      test-postgres:
+        condition: service_healthy
+    mem_limit: 2g
+
+  model-prepare:
+    image: robotics-data-platform-vlm:local
+    build:
+      context: .
+      target: vlm
+    profiles: [vlm-prepare]
+    entrypoint: [/opt/vlm/bin/python, -c]
+    command: ["from pathlib import Path; from robotics_data_platform.planning.adapter import PROFILE; from robotics_data_platform.planning.model_cache import prepare; prepare(Path('/models'),PROFILE); print('Pinned model cache prepared')"]
+    volumes:
+      - model_cache:/models
+    mem_limit: 2g
+
+  evaluator:
+    <<: *app
+    profiles: [evaluation]
+    command: [python, -m, robotics_data_platform.evaluation.reports]
+    volumes:
+      - analytical_data:/datasets:ro
+      - evaluation_data:/evaluations
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    mem_limit: 1g
+
+  dashboard:
+    image: robotics-data-platform-dashboard:local
+    build:
+      context: .
+      target: dashboard
+    profiles: [dashboard]
+    environment:
+      RDP_API_BASE_URL: http://api:8000
+      STREAMLIT_CLIENT_TOOLBAR_MODE: viewer
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8501:8501"
+    mem_limit: 1g
+    healthcheck:
+      test: [CMD, /opt/dashboard/bin/python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=4)"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  proposal-ingestor:
+    <<: *app
+    profiles: [proposal-ingestion]
+    command: [python, -m, robotics_data_platform.planning.ingestion, ingest]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    volumes:
+      - proposal_spool:/proposals:ro
+      - raw_data:/raw
+
+  planner:
+    image: robotics-data-platform-vlm:local
+    build:
+      context: .
+      target: vlm
+    profiles: [vlm]
+    network_mode: none
+    environment:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+    volumes:
+      - model_cache:/models:ro
+      - raw_data:/raw:ro
+      - proposal_spool:/proposals
+    cpus: 2
+    mem_limit: 6g
+
+  benchmark-simulator:
+    image: robotics-data-platform-simulator:local
+    build:
+      context: .
+      target: simulator
+    profiles: [benchmark]
+    entrypoint: [python, -m, robotics_data_platform.benchmark.run]
+    command: [baseline]
+    network_mode: none
+    cpus: 2
+    mem_limit: 3g
+    volumes:
+      - capture_spool:/capture
+      - benchmark_data:/benchmark
+
+  benchmark-planner:
+    image: robotics-data-platform-vlm:local
+    build:
+      context: .
+      target: vlm
+    profiles: [benchmark]
+    entrypoint: [python, -m, robotics_data_platform.benchmark.run]
+    command: [infer]
+    network_mode: none
+    cpus: 2
+    mem_limit: 6g
+    environment:
+      HF_HUB_OFFLINE: '1'
+      TRANSFORMERS_OFFLINE: '1'
+    volumes:
+      - model_cache:/models:ro
+      - raw_data:/raw:ro
+      - proposal_spool:/proposals
+      - benchmark_data:/benchmark
+
+  benchmark-data:
+    <<: *app
+    profiles: [benchmark]
+    command: [python, -m, robotics_data_platform.benchmark.run, status]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    volumes:
+      - capture_spool:/capture:ro
+      - proposal_spool:/proposals:ro
+      - raw_data:/raw
+      - benchmark_data:/benchmark
+
+volumes:
+  postgres_data:
+  capture_spool:
+  raw_data:
+  analytical_data:
+  prefect_data:
+  model_cache:
+  proposal_spool:
+  evaluation_data:
+  benchmark_data:

@@ -1,0 +1,102 @@
+{
+  "$defs": {
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "camera_config_artifact_id": {
+          "format": "uuid4",
+          "title": "Camera Config Artifact Id",
+          "type": "string"
+        },
+        "episode_id": {
+          "format": "uuid4",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "image_artifact_id": {
+          "format": "uuid4",
+          "title": "Image Artifact Id",
+          "type": "string"
+        },
+        "image_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Image Sha256",
+          "type": "string"
+        },
+        "observation_id": {
+          "format": "uuid4",
+          "title": "Observation Id",
+          "type": "string"
+        },
+        "receipt_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Receipt Sha256",
+          "type": "string"
+        },
+        "source_fingerprint": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Source Fingerprint",
+          "type": "string"
+        }
+      },
+      "required": [
+        "episode_id",
+        "observation_id",
+        "image_artifact_id",
+        "image_sha256",
+        "receipt_sha256",
+        "source_fingerprint",
+        "camera_config_artifact_id"
+      ],
+      "title": "Source",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "attempt_contract_version": {
+      "const": "1.0.0",
+      "title": "Attempt Contract Version",
+      "type": "string"
+    },
+    "episode_id": {
+      "format": "uuid4",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "mode": {
+      "const": "VLM_EVALUATION",
+      "title": "Mode",
+      "type": "string"
+    },
+    "proposal_id": {
+      "format": "uuid4",
+      "title": "Proposal Id",
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/$defs/Source"
+    },
+    "started_at_utc": {
+      "format": "date-time",
+      "title": "Started At Utc",
+      "type": "string"
+    },
+    "state": {
+      "const": "RUNNING",
+      "title": "State",
+      "type": "string"
+    }
+  },
+  "required": [
+    "attempt_contract_version",
+    "proposal_id",
+    "episode_id",
+    "mode",
+    "started_at_utc",
+    "source",
+    "state"
+  ],
+  "title": "Intent",
+  "type": "object"
+}

@@ -1,0 +1,620 @@
+{
+  "task_set_version": "1.0.0",
+  "name": "tabletop-evaluation-v1",
+  "split": "planned_evaluation",
+  "disclosure": "Frozen before benchmark execution. Thirty cases across seeds 17, 23 and 29; 90 VLM slots, 54 applicable structured-baseline slots and 36 baseline-not-applicable slots. Public appearance/handle vocabulary is disclosed model input. Seeds are repetition groups and do not establish independent scene variation. No held-out accuracy, scene novelty or completed benchmark is claimed until actual runs and their lineage are validated.",
+  "cases": [
+    {
+      "case_id": "supported-package_01-zone_a-phrase1",
+      "category": "supported",
+      "instruction": "Move the red package to zone A.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_01",
+        "destination_id": "zone_a"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_01",
+        "destination_id": "zone_a"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_01-zone_a-phrase2",
+      "category": "supported",
+      "instruction": "Place the red package in zone A.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_01",
+        "destination_id": "zone_a"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_01",
+        "destination_id": "zone_a"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_01-zone_a-phrase3",
+      "category": "supported",
+      "instruction": "Sort the red package into zone A.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_01",
+        "destination_id": "zone_a"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_01",
+        "destination_id": "zone_a"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_01-zone_b-phrase1",
+      "category": "supported",
+      "instruction": "Move the red package to zone B.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_01",
+        "destination_id": "zone_b"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_01",
+        "destination_id": "zone_b"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_01-zone_b-phrase2",
+      "category": "supported",
+      "instruction": "Place the red package in zone B.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_01",
+        "destination_id": "zone_b"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_01",
+        "destination_id": "zone_b"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_01-zone_b-phrase3",
+      "category": "supported",
+      "instruction": "Sort the red package into zone B.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_01",
+        "destination_id": "zone_b"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_01",
+        "destination_id": "zone_b"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_02-zone_a-phrase1",
+      "category": "supported",
+      "instruction": "Move the green package to zone A.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_02",
+        "destination_id": "zone_a"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_02",
+        "destination_id": "zone_a"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_02-zone_a-phrase2",
+      "category": "supported",
+      "instruction": "Place the green package in zone A.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_02",
+        "destination_id": "zone_a"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_02",
+        "destination_id": "zone_a"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_02-zone_a-phrase3",
+      "category": "supported",
+      "instruction": "Sort the green package into zone A.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_02",
+        "destination_id": "zone_a"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_02",
+        "destination_id": "zone_a"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_02-zone_b-phrase1",
+      "category": "supported",
+      "instruction": "Move the green package to zone B.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_02",
+        "destination_id": "zone_b"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_02",
+        "destination_id": "zone_b"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_02-zone_b-phrase2",
+      "category": "supported",
+      "instruction": "Place the green package in zone B.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_02",
+        "destination_id": "zone_b"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_02",
+        "destination_id": "zone_b"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_02-zone_b-phrase3",
+      "category": "supported",
+      "instruction": "Sort the green package into zone B.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_02",
+        "destination_id": "zone_b"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_02",
+        "destination_id": "zone_b"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_03-zone_a-phrase1",
+      "category": "supported",
+      "instruction": "Move the blue package to zone A.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_03",
+        "destination_id": "zone_a"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_03",
+        "destination_id": "zone_a"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_03-zone_a-phrase2",
+      "category": "supported",
+      "instruction": "Place the blue package in zone A.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_03",
+        "destination_id": "zone_a"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_03",
+        "destination_id": "zone_a"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_03-zone_a-phrase3",
+      "category": "supported",
+      "instruction": "Sort the blue package into zone A.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_03",
+        "destination_id": "zone_a"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_03",
+        "destination_id": "zone_a"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_03-zone_b-phrase1",
+      "category": "supported",
+      "instruction": "Move the blue package to zone B.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_03",
+        "destination_id": "zone_b"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_03",
+        "destination_id": "zone_b"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_03-zone_b-phrase2",
+      "category": "supported",
+      "instruction": "Place the blue package in zone B.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_03",
+        "destination_id": "zone_b"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_03",
+        "destination_id": "zone_b"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "supported-package_03-zone_b-phrase3",
+      "category": "supported",
+      "instruction": "Sort the blue package into zone B.",
+      "expected": {
+        "status": "ready",
+        "object_id": "package_03",
+        "destination_id": "zone_b"
+      },
+      "vlm_applicable": true,
+      "baseline_request": {
+        "object_id": "package_03",
+        "destination_id": "zone_b"
+      },
+      "baseline_outcome": "SUCCEEDED",
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "ambiguous-deictic-package",
+      "category": "ambiguous",
+      "instruction": "Move that package to zone A.",
+      "expected": {
+        "status": "clarify",
+        "reason_code": "OBJECT_AMBIGUOUS"
+      },
+      "vlm_applicable": true,
+      "baseline_request": null,
+      "baseline_outcome": null,
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "ambiguous-missing-context-package",
+      "category": "ambiguous",
+      "instruction": "Put the package I meant in zone B.",
+      "expected": {
+        "status": "clarify",
+        "reason_code": "OBJECT_AMBIGUOUS"
+      },
+      "vlm_applicable": true,
+      "baseline_request": null,
+      "baseline_outcome": null,
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "ambiguous-unspecified-package",
+      "category": "ambiguous",
+      "instruction": "Sort the package into zone A.",
+      "expected": {
+        "status": "clarify",
+        "reason_code": "OBJECT_AMBIGUOUS"
+      },
+      "vlm_applicable": true,
+      "baseline_request": null,
+      "baseline_outcome": null,
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "ambiguous-no-destination",
+      "category": "ambiguous",
+      "instruction": "Move the red package.",
+      "expected": {
+        "status": "clarify",
+        "reason_code": "DESTINATION_AMBIGUOUS"
+      },
+      "vlm_applicable": true,
+      "baseline_request": null,
+      "baseline_outcome": null,
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "ambiguous-missing-context-zone",
+      "category": "ambiguous",
+      "instruction": "Place the green package in the destination I meant.",
+      "expected": {
+        "status": "clarify",
+        "reason_code": "DESTINATION_AMBIGUOUS"
+      },
+      "vlm_applicable": true,
+      "baseline_request": null,
+      "baseline_outcome": null,
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "ambiguous-deictic-zone",
+      "category": "ambiguous",
+      "instruction": "Move the blue package to that zone.",
+      "expected": {
+        "status": "clarify",
+        "reason_code": "DESTINATION_AMBIGUOUS"
+      },
+      "vlm_applicable": true,
+      "baseline_request": null,
+      "baseline_outcome": null,
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "invalid-yellow",
+      "category": "invalid",
+      "instruction": "Move the yellow package to zone A.",
+      "expected": {
+        "status": "reject",
+        "reason_code": "OBJECT_UNAVAILABLE"
+      },
+      "vlm_applicable": true,
+      "baseline_request": null,
+      "baseline_outcome": null,
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "invalid-orange",
+      "category": "invalid",
+      "instruction": "Move the orange package to zone B.",
+      "expected": {
+        "status": "reject",
+        "reason_code": "OBJECT_UNAVAILABLE"
+      },
+      "vlm_applicable": true,
+      "baseline_request": null,
+      "baseline_outcome": null,
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "invalid-purple",
+      "category": "invalid",
+      "instruction": "Move the purple package to zone A.",
+      "expected": {
+        "status": "reject",
+        "reason_code": "OBJECT_UNAVAILABLE"
+      },
+      "vlm_applicable": true,
+      "baseline_request": null,
+      "baseline_outcome": null,
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "invalid-zone-c",
+      "category": "invalid",
+      "instruction": "Move the red package to zone C.",
+      "expected": {
+        "status": "reject",
+        "reason_code": "DESTINATION_INVALID"
+      },
+      "vlm_applicable": true,
+      "baseline_request": null,
+      "baseline_outcome": null,
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "invalid-stack",
+      "category": "invalid",
+      "instruction": "Stack the red package on the green package.",
+      "expected": {
+        "status": "reject",
+        "reason_code": "UNSUPPORTED_INSTRUCTION"
+      },
+      "vlm_applicable": true,
+      "baseline_request": null,
+      "baseline_outcome": null,
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    },
+    {
+      "case_id": "invalid-rotate",
+      "category": "invalid",
+      "instruction": "Rotate the blue package by 90 degrees.",
+      "expected": {
+        "status": "reject",
+        "reason_code": "UNSUPPORTED_INSTRUCTION"
+      },
+      "vlm_applicable": true,
+      "baseline_request": null,
+      "baseline_outcome": null,
+      "baseline_failure_code": null,
+      "seeds": [
+        17,
+        23,
+        29
+      ]
+    }
+  ]
+}

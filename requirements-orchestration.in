@@ -1,0 +1,2 @@
+# Separate environment: Prefect's FastAPI constraint differs from the data API.
+prefect==3.9.2

@@ -1,0 +1,21 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "manifest_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Manifest Sha256",
+      "type": "string"
+    },
+    "proposal_id": {
+      "format": "uuid4",
+      "title": "Proposal Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "proposal_id",
+    "manifest_sha256"
+  ],
+  "title": "Ready",
+  "type": "object"
+}

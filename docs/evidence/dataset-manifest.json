@@ -1,0 +1,162 @@
+{
+  "build_fingerprint": "5ffa2059467323c8782f444cb55bc06e8b1c828c304368340e91245cb2db0dc6",
+  "contract_version": "1.1.0",
+  "dataset_id": "c4715fa5-51e9-427a-8d2b-aed006dc5066",
+  "input_sha256": "0e43a85cd4b7252c6509edd41c78b5ce888683ccacc1aa7677b7e0cbdbf29a3e",
+  "metrics": {
+    "catalog_episodes": 71,
+    "coverage": {
+      "denominator": 54,
+      "numerator": 54,
+      "rate": 1
+    },
+    "eligible_episodes": 71,
+    "expectation_match": {
+      "denominator": 54,
+      "numerator": 54,
+      "rate": 1
+    },
+    "normal_task_success": {
+      "denominator": 54,
+      "numerator": 54,
+      "rate": 1
+    },
+    "physical_task_success": {
+      "denominator": 54,
+      "numerator": 54,
+      "rate": 1
+    },
+    "proposals": {
+      "attempts": 93,
+      "execution_eligible": {
+        "denominator": 93,
+        "numerator": 0,
+        "rate": 0
+      },
+      "integrity_complete": {
+        "denominator": 93,
+        "numerator": 93,
+        "rate": 1
+      },
+      "physical_success": {
+        "reason": "VLM_EVALUATION never executes robot actions",
+        "status": "NOT_APPLICABLE"
+      },
+      "provider_completion": {
+        "denominator": 93,
+        "numerator": 92,
+        "rate": 0.989247311827957
+      },
+      "provider_status_counts": {
+        "COMPLETED": 92,
+        "MODEL_TIMEOUT": 1
+      },
+      "quality_violations": {
+        "no_execution_eligibility": 0,
+        "proposal_artifact_parent": 0,
+        "unique_proposal_artifacts": 0,
+        "unique_proposals": 0,
+        "validation_parent": 0
+      },
+      "schema_valid_all_attempts": {
+        "denominator": 93,
+        "numerator": 0,
+        "rate": 0
+      },
+      "schema_valid_completed": {
+        "denominator": 92,
+        "numerator": 0,
+        "rate": 0
+      },
+      "split": "mixed_audit_corpus"
+    },
+    "quality_violations": {
+      "facts_have_eligible_episode": 0,
+      "observation_images_exist": 0,
+      "unique_artifacts": 0,
+      "unique_episodes": 0,
+      "unique_events": 0,
+      "unique_expected_cases": 0
+    },
+    "rejection_match": {
+      "denominator": 0,
+      "numerator": 0,
+      "rate": null
+    },
+    "split": "fixed_evaluation"
+  },
+  "tables": {
+    "actions": {
+      "file_sha256": "9a483cf4d79ea20d1d17f640904f659f87f8b2d3d142a012d579f72cce9e6565",
+      "logical_sha256": "f2114e772664d930f40d07eb1a752399b15a8f07f92775d4183e8bdfcf120814",
+      "rows": 135,
+      "schema": "action_id: string\nepisode_id: string\nprimitive: string\nobject_id: string\ndestination_id: string\nstatus: string\nduration_ms: double\nfailure_code: string"
+    },
+    "artifacts": {
+      "file_sha256": "22624ac46c262e63d84f9448a2b42f15f8c820d4d17b775c00cad969d6812364",
+      "logical_sha256": "f734a655c2c1601a88855f0e3225d17e7d164f8dd669e30074bb7715fe117b74",
+      "rows": 1088,
+      "schema": "artifact_id: string\nepisode_id: string\nrole: string\nmedia_type: string\nsha256: string\nbyte_size: int64"
+    },
+    "episodes": {
+      "file_sha256": "df4660d83bdc1c58a31a8329b673aedc7a1c3c0bdfcd643210035d8a46613786",
+      "logical_sha256": "01ed1e4217472fb7a6517a896b6335739a05a1bee8c2f2ace7320dfe7d08e2ee",
+      "rows": 71,
+      "schema": "episode_id: string\nseal_id: string\nrevision: int64\nquality: string\neligible: bool\nmode: string\nobject_id: string\ndestination_id: string\nseed: int64\nsource_fingerprint: string\noutcome: string\nfailure_code: string"
+    },
+    "evaluation_cases": {
+      "file_sha256": "d2cd80381ab9a550ed3167f4216cda1932a90f561182a122fcc17dc40886cddd",
+      "logical_sha256": "48f3d4cf23963151be4f641ecdd1e3220ac416fa32110e205bf490c04f0e824a",
+      "rows": 54,
+      "schema": "case_id: string\nepisode_id: string\ncategory: string\nsplit: string\nexpected_outcome: string\nexpected_failure_code: string\neligible: bool\nrequest_matches: bool\nactual_outcome: string\nactual_failure_code: string\nexpectation_match: bool"
+    },
+    "events": {
+      "file_sha256": "064188ca1f99509888b8345055be42f368f71778d664dc1fc7711d14a375fc1b",
+      "logical_sha256": "167a8a77c2df47069469bbc55f0786140844f0a51839dfa18dae089a0e576597",
+      "rows": 1158,
+      "schema": "event_id: string\nepisode_id: string\nevent_type: string\nproducer_sequence: int64\nsha256: string\npayload_json: string"
+    },
+    "findings": {
+      "file_sha256": "3637558c0efde60a980993687b9b8025f97182e3d0b2862c95568bc52579dfda",
+      "logical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rows": 0,
+      "schema": "episode_id: string\ncode: string\nmessage: string\nresolved: bool"
+    },
+    "observations": {
+      "file_sha256": "ed97d2d97cecb8afad2a68447e384dc643096a448727a38d67c305c65b6771dd",
+      "logical_sha256": "25cff04bc859e5463964d0f84b1e9d4f88c661ab37d1a34d6e2b65e7923fc7cc",
+      "rows": 339,
+      "schema": "observation_id: string\nepisode_id: string\nevent_id: string\nimage_artifact_id: string\ncamera_config_artifact_id: string\ncamera_id: string\nwidth_px: int64\nheight_px: int64"
+    },
+    "proposal_artifacts": {
+      "file_sha256": "38fbbbaa385a4cd3571bd8bfc7c2bb49192aae991f5612b6009ce7b8e7c9e63c",
+      "logical_sha256": "7f45799db089c562a081ef0b1a1ad92f158785a6ee833f7080b6214f6f8d7294",
+      "rows": 926,
+      "schema": "artifact_id: string\nproposal_id: string\nepisode_id: string\nrole: string\nsha256: string\nbyte_size: int64"
+    },
+    "proposal_findings": {
+      "file_sha256": "fb0e6145fd26db19deeaf046699efbf24ebc3f82db8666b0a175fd07931907e8",
+      "logical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rows": 0,
+      "schema": "proposal_id: string\ncode: string\nmessage: string\nresolved: bool"
+    },
+    "proposal_receipts": {
+      "file_sha256": "4778beee3da33c756a5b48867d7da4a9bc1046db54248b340a04d03c5d48b456",
+      "logical_sha256": "9b7079f68e26e7d7d3676c0dbc23a17f61f9bf245dbfe4172160aa2b96959252",
+      "rows": 93,
+      "schema": "receipt_sha256: string\nproposal_id: string\nmanifest_sha256: string\nstatus: string"
+    },
+    "proposal_validations": {
+      "file_sha256": "566564668b2bb0d767bb54226e8ea23cef59508be9a666c16c0a075c5265caed",
+      "logical_sha256": "f0026e2bfd6a458a5df144e0d9468a833544dcf0a94aa2c7066a3838aba34e79",
+      "rows": 92,
+      "schema": "proposal_id: string\nschema_valid: bool\nreference_valid: bool\nexecution_eligible: bool\ndisposition: string\nreason_codes_json: string"
+    },
+    "proposals": {
+      "file_sha256": "2fa26c8ce778568b76f47163d76df339db477505ccd8621068b1d4fdf7595950",
+      "logical_sha256": "1a8b3e8185309ce9066e87b9f0453b82940d5a2f52f46dd2cfef6704f4ad64c7",
+      "rows": 93,
+      "schema": "proposal_id: string\nepisode_id: string\nsource_episode_id: string\nsource_observation_id: string\nsource_image_sha256: string\neligible: bool\nquality: string\nprovider_status: string\noutcome: string\nexecution_eligible: bool\nmodel_id: string\nmodel_revision: string\nmanifest_sha256: string\nwall_ms: double"
+    }
+  }
+}

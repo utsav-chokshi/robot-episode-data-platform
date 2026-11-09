@@ -1,0 +1,229 @@
+{
+  "$defs": {
+    "Artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "access_class": {
+          "enum": [
+            "OBSERVATION",
+            "MODEL_IO",
+            "CONFIGURATION"
+          ],
+          "title": "Access Class",
+          "type": "string"
+        },
+        "artifact_id": {
+          "format": "uuid4",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "byte_size": {
+          "maximum": 8388608,
+          "minimum": 0,
+          "title": "Byte Size",
+          "type": "integer"
+        },
+        "episode_id": {
+          "format": "uuid4",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "media_type": {
+          "maxLength": 128,
+          "title": "Media Type",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "proposal_image",
+            "instruction",
+            "public_vocabulary",
+            "prompt",
+            "provider_config",
+            "model_response",
+            "proposal_validation",
+            "provider_measurements",
+            "provider_diagnostic",
+            "rendered_prompt",
+            "generated_tokens"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "episode_id",
+        "role",
+        "sha256",
+        "byte_size",
+        "media_type",
+        "access_class"
+      ],
+      "title": "Artifact",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "camera_config_artifact_id": {
+          "format": "uuid4",
+          "title": "Camera Config Artifact Id",
+          "type": "string"
+        },
+        "episode_id": {
+          "format": "uuid4",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "image_artifact_id": {
+          "format": "uuid4",
+          "title": "Image Artifact Id",
+          "type": "string"
+        },
+        "image_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Image Sha256",
+          "type": "string"
+        },
+        "observation_id": {
+          "format": "uuid4",
+          "title": "Observation Id",
+          "type": "string"
+        },
+        "receipt_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Receipt Sha256",
+          "type": "string"
+        },
+        "source_fingerprint": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Source Fingerprint",
+          "type": "string"
+        }
+      },
+      "required": [
+        "episode_id",
+        "observation_id",
+        "image_artifact_id",
+        "image_sha256",
+        "receipt_sha256",
+        "source_fingerprint",
+        "camera_config_artifact_id"
+      ],
+      "title": "Source",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/Artifact"
+      },
+      "maxItems": 32,
+      "minItems": 6,
+      "title": "Artifacts",
+      "type": "array"
+    },
+    "attempt_contract_version": {
+      "const": "1.0.0",
+      "title": "Attempt Contract Version",
+      "type": "string"
+    },
+    "episode_id": {
+      "format": "uuid4",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "execution_eligible": {
+      "const": false,
+      "title": "Execution Eligible",
+      "type": "boolean"
+    },
+    "finished_at_utc": {
+      "format": "date-time",
+      "title": "Finished At Utc",
+      "type": "string"
+    },
+    "mode": {
+      "const": "VLM_EVALUATION",
+      "title": "Mode",
+      "type": "string"
+    },
+    "outcome": {
+      "const": "NOT_EXECUTED",
+      "title": "Outcome",
+      "type": "string"
+    },
+    "proposal_id": {
+      "format": "uuid4",
+      "title": "Proposal Id",
+      "type": "string"
+    },
+    "provider_metadata": {
+      "additionalProperties": true,
+      "title": "Provider Metadata",
+      "type": "object"
+    },
+    "provider_status": {
+      "enum": [
+        "COMPLETED",
+        "MODEL_TIMEOUT",
+        "MODEL_UNAVAILABLE",
+        "MODEL_ERROR",
+        "RESPONSE_LIMIT_EXCEEDED"
+      ],
+      "title": "Provider Status",
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/$defs/Source"
+    },
+    "started_at_utc": {
+      "format": "date-time",
+      "title": "Started At Utc",
+      "type": "string"
+    },
+    "state": {
+      "const": "FINISHED",
+      "title": "State",
+      "type": "string"
+    },
+    "validation": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Validation"
+    }
+  },
+  "required": [
+    "attempt_contract_version",
+    "proposal_id",
+    "episode_id",
+    "mode",
+    "started_at_utc",
+    "source",
+    "state",
+    "outcome",
+    "finished_at_utc",
+    "provider_status",
+    "execution_eligible",
+    "validation",
+    "artifacts",
+    "provider_metadata"
+  ],
+  "title": "Manifest",
+  "type": "object"
+}

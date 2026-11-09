@@ -1,0 +1,104 @@
+{
+  "$defs": {
+    "Clarify": {
+      "additionalProperties": false,
+      "properties": {
+        "reason_code": {
+          "enum": [
+            "OBJECT_AMBIGUOUS",
+            "DESTINATION_AMBIGUOUS",
+            "INSTRUCTION_AMBIGUOUS"
+          ],
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "status": {
+          "const": "clarify",
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "reason_code"
+      ],
+      "title": "Clarify",
+      "type": "object"
+    },
+    "Ready": {
+      "additionalProperties": false,
+      "properties": {
+        "destination_id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "title": "Destination Id",
+          "type": "string"
+        },
+        "object_id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "title": "Object Id",
+          "type": "string"
+        },
+        "status": {
+          "const": "ready",
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "object_id",
+        "destination_id"
+      ],
+      "title": "Ready",
+      "type": "object"
+    },
+    "Reject": {
+      "additionalProperties": false,
+      "properties": {
+        "reason_code": {
+          "enum": [
+            "OBJECT_UNAVAILABLE",
+            "DESTINATION_INVALID",
+            "UNSUPPORTED_INSTRUCTION"
+          ],
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "status": {
+          "const": "reject",
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "reason_code"
+      ],
+      "title": "Reject",
+      "type": "object"
+    }
+  },
+  "discriminator": {
+    "mapping": {
+      "clarify": "#/$defs/Clarify",
+      "ready": "#/$defs/Ready",
+      "reject": "#/$defs/Reject"
+    },
+    "propertyName": "status"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/Ready"
+    },
+    {
+      "$ref": "#/$defs/Reject"
+    },
+    {
+      "$ref": "#/$defs/Clarify"
+    }
+  ]
+}

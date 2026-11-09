@@ -1,0 +1,147 @@
+{
+  "$defs": {
+    "Clarify": {
+      "additionalProperties": false,
+      "properties": {
+        "reason_code": {
+          "enum": [
+            "OBJECT_AMBIGUOUS",
+            "DESTINATION_AMBIGUOUS",
+            "INSTRUCTION_AMBIGUOUS"
+          ],
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "status": {
+          "const": "clarify",
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "reason_code"
+      ],
+      "title": "Clarify",
+      "type": "object"
+    },
+    "Ready": {
+      "additionalProperties": false,
+      "properties": {
+        "destination_id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "title": "Destination Id",
+          "type": "string"
+        },
+        "object_id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "title": "Object Id",
+          "type": "string"
+        },
+        "status": {
+          "const": "ready",
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "object_id",
+        "destination_id"
+      ],
+      "title": "Ready",
+      "type": "object"
+    },
+    "Reject": {
+      "additionalProperties": false,
+      "properties": {
+        "reason_code": {
+          "enum": [
+            "OBJECT_UNAVAILABLE",
+            "DESTINATION_INVALID",
+            "UNSUPPORTED_INSTRUCTION"
+          ],
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "status": {
+          "const": "reject",
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "reason_code"
+      ],
+      "title": "Reject",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "execution_eligible": {
+      "const": false,
+      "default": false,
+      "title": "Execution Eligible",
+      "type": "boolean"
+    },
+    "parsed_proposal": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Ready"
+        },
+        {
+          "$ref": "#/$defs/Reject"
+        },
+        {
+          "$ref": "#/$defs/Clarify"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Parsed Proposal"
+    },
+    "reason_codes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Reason Codes",
+      "type": "array"
+    },
+    "reference_valid": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Reference Valid"
+    },
+    "schema_valid": {
+      "title": "Schema Valid",
+      "type": "boolean"
+    },
+    "validator_version": {
+      "const": "proposal-validator-v1",
+      "default": "proposal-validator-v1",
+      "title": "Validator Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_valid",
+    "reference_valid",
+    "reason_codes",
+    "parsed_proposal"
+  ],
+  "title": "ValidationResult",
+  "type": "object"
+}

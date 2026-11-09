@@ -1,0 +1,162 @@
+{
+  "suite_version": "1.0.0",
+  "cases": [
+    {
+      "case_id": "package_01-zone_a-seed7",
+      "request": {
+        "object_id": "package_01",
+        "destination_id": "zone_a",
+        "seed": 7
+      },
+      "expected_outcome": "SUCCEEDED"
+    },
+    {
+      "case_id": "package_01-zone_b-seed7",
+      "request": {
+        "object_id": "package_01",
+        "destination_id": "zone_b",
+        "seed": 7
+      },
+      "expected_outcome": "SUCCEEDED"
+    },
+    {
+      "case_id": "package_02-zone_a-seed7",
+      "request": {
+        "object_id": "package_02",
+        "destination_id": "zone_a",
+        "seed": 7
+      },
+      "expected_outcome": "SUCCEEDED"
+    },
+    {
+      "case_id": "package_02-zone_b-seed7",
+      "request": {
+        "object_id": "package_02",
+        "destination_id": "zone_b",
+        "seed": 7
+      },
+      "expected_outcome": "SUCCEEDED"
+    },
+    {
+      "case_id": "package_03-zone_a-seed7",
+      "request": {
+        "object_id": "package_03",
+        "destination_id": "zone_a",
+        "seed": 7
+      },
+      "expected_outcome": "SUCCEEDED"
+    },
+    {
+      "case_id": "package_03-zone_b-seed7",
+      "request": {
+        "object_id": "package_03",
+        "destination_id": "zone_b",
+        "seed": 7
+      },
+      "expected_outcome": "SUCCEEDED"
+    },
+    {
+      "case_id": "package_01-zone_a-seed8",
+      "request": {
+        "object_id": "package_01",
+        "destination_id": "zone_a",
+        "seed": 8
+      },
+      "expected_outcome": "SUCCEEDED"
+    },
+    {
+      "case_id": "package_01-zone_b-seed8",
+      "request": {
+        "object_id": "package_01",
+        "destination_id": "zone_b",
+        "seed": 8
+      },
+      "expected_outcome": "SUCCEEDED"
+    },
+    {
+      "case_id": "package_02-zone_a-seed8",
+      "request": {
+        "object_id": "package_02",
+        "destination_id": "zone_a",
+        "seed": 8
+      },
+      "expected_outcome": "SUCCEEDED"
+    },
+    {
+      "case_id": "package_02-zone_b-seed8",
+      "request": {
+        "object_id": "package_02",
+        "destination_id": "zone_b",
+        "seed": 8
+      },
+      "expected_outcome": "SUCCEEDED"
+    },
+    {
+      "case_id": "package_03-zone_a-seed8",
+      "request": {
+        "object_id": "package_03",
+        "destination_id": "zone_a",
+        "seed": 8
+      },
+      "expected_outcome": "SUCCEEDED"
+    },
+    {
+      "case_id": "package_03-zone_b-seed8",
+      "request": {
+        "object_id": "package_03",
+        "destination_id": "zone_b",
+        "seed": 8
+      },
+      "expected_outcome": "SUCCEEDED"
+    },
+    {
+      "case_id": "repeat-package_01-zone_a-seed7",
+      "repeat_of": "package_01-zone_a-seed7",
+      "request": {
+        "object_id": "package_01",
+        "destination_id": "zone_a",
+        "seed": 7
+      },
+      "expected_outcome": "SUCCEEDED"
+    },
+    {
+      "case_id": "injected-no-grasp",
+      "request": {
+        "object_id": "package_01",
+        "destination_id": "zone_a",
+        "seed": 7,
+        "scenario": "no_grasp"
+      },
+      "expected_outcome": "FAILED",
+      "expected_failure_code": "GRASP_FAILED"
+    },
+    {
+      "case_id": "absent-object",
+      "request": {
+        "object_id": "package_99",
+        "destination_id": "zone_a"
+      },
+      "expected_outcome": "REJECTED",
+      "expected_failure_code": "OBJECT_UNAVAILABLE"
+    },
+    {
+      "case_id": "invalid-destination",
+      "request": {
+        "object_id": "package_01",
+        "destination_id": "missing"
+      },
+      "expected_outcome": "REJECTED",
+      "expected_failure_code": "DESTINATION_INVALID"
+    },
+    {
+      "case_id": "model-mode-blocked",
+      "request": {
+        "mode": "VLM_EVALUATION",
+        "object_id": "package_01",
+        "destination_id": "zone_a"
+      },
+      "expected_outcome": "REJECTED",
+      "expected_failure_code": "PLAN_SCHEMA_INVALID"
+    }
+  ]
+}
